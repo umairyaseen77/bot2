@@ -1,0 +1,25 @@
+ICON FILES NEEDED FOR EXTENSION:
+
+You need to create these 3 icon files and place them in the extension folder:
+
+1. icon16.png (16x16 pixels)
+2. icon48.png (48x48 pixels)  
+3. icon128.png (128x128 pixels)
+
+SIMPLE SOLUTION:
+- Use any image editor (Paint, GIMP, online editor)
+- Create simple square images with "AJ" text (Amazon Jobs)
+- Use blue/orange Amazon colors
+- Save as PNG files with exact names above
+
+OR DOWNLOAD:
+- Find free job/search icons online
+- Resize to required dimensions
+- Save with exact filenames
+
+The extension will work without icons but Chrome will show default placeholder icons.
+
+QUICK OPTION - Use these as temporary placeholders:
+- Right-click any web image
+- Save as and rename to icon16.png, icon48.png, icon128.png
+- Extension will load but use whatever images you saved 

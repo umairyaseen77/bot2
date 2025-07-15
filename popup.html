@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            width: 350px;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .status {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .status.active {
+            background: rgba(76, 175, 80, 0.3);
+        }
+        
+        .status.inactive {
+            background: rgba(244, 67, 54, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .input-group input {
+            flex: 1;
+        }
+        
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            border-color: #4CAF50;
+        }
+        
+        .btn-danger {
+            background: #F44336;
+            border-color: #F44336;
+        }
+        
+        .btn-secondary {
+            background: #2196F3;
+            border-color: #2196F3;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .button-group button {
+            flex: 1;
+        }
+        
+        .help-text {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+        
+        .success {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        
+        .error {
+            background: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        
+        .setup-instructions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .setup-instructions h3 {
+            margin: 0 0 10px 0;
+            font-size: 13px;
+        }
+        
+        .setup-instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .setup-instructions li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Amazon Job Monitor</h1>
+    </div>
+    
+    <div id="status" class="status inactive">
+        <strong>Status:</strong> <span id="statusText">Inactive</span>
+        <div class="stats">
+            <span>Jobs: <span id="jobCount">0</span></span>
+            <span>Known: <span id="knownCount">0</span></span>
+        </div>
+    </div>
+    
+    <div id="setupInstructions" class="setup-instructions">
+        <h3>📱 Telegram Bot Setup:</h3>
+        <ol>
+            <li>Message @BotFather on Telegram</li>
+            <li>Send <code>/newbot</code></li>
+            <li>Choose a name and username</li>
+            <li>Copy the bot token</li>
+            <li>Send a message to your bot</li>
+            <li>Visit: <code>api.telegram.org/bot&lt;TOKEN&gt;/getUpdates</code></li>
+            <li>Copy your chat ID from the response</li>
+        </ol>
+    </div>
+    
+    <div class="form-group">
+        <label for="botToken">🤖 Telegram Bot Token:</label>
+        <input type="password" id="botToken" placeholder="123456789:ABCdefGhIJKlmNoPQRsTUVwxyZ">
+        <div class="help-text">Get from @BotFather on Telegram</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="chatId">💬 Chat ID:</label>
+        <input type="text" id="chatId" placeholder="123456789">
+        <div class="help-text">Your personal chat ID with the bot</div>
+    </div>
+    
+    <div class="form-group">
+        <label for="refreshInterval">⏱️ Refresh Interval (seconds):</label>
+        <select id="refreshInterval">
+            <option value="15">15 seconds</option>
+            <option value="30" selected>30 seconds</option>
+            <option value="60">1 minute</option>
+            <option value="120">2 minutes</option>
+            <option value="300">5 minutes</option>
+        </select>
+    </div>
+    
+    <div class="button-group">
+        <button id="testBtn" class="btn-secondary">🧪 Test</button>
+        <button id="saveBtn" class="btn-primary">💾 Save</button>
+    </div>
+    
+    <div class="button-group">
+        <button id="startBtn" class="btn-primary">▶️ Start Monitor</button>
+        <button id="stopBtn" class="btn-danger">⏹️ Stop Monitor</button>
+    </div>
+    
+    <div class="button-group">
+        <button id="checkNowBtn" class="btn-secondary">🔍 Check Now</button>
+        <button id="clearJobsBtn" class="btn-secondary">🗑️ Clear Jobs</button>
+    </div>
+    
+    <div id="message"></div>
+    
+    <script src="popup.js"></script>
+</body>
+</html> 
